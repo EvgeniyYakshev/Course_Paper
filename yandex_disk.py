@@ -1,4 +1,5 @@
-class YandexDisk():
+class yandex_disk():
+
     def __init__(self, poligon):
         self.poligon = poligon
 
@@ -26,6 +27,7 @@ class YandexDisk():
                 print(f'Вы ввели некорректную команду. Работа программы будет прервана. Вернитесь к выбору названия папки.')    
                 # self.create_get_folder(photo_dict)
                 return
+    def upload_url_1(self):           
         upload_url = 'https://cloud-api.yandex.net/v1/disk/resources/upload'
         headers = self.get_headers()
         for name, size in tqdm(photo_dict.items(), desc='Processing photos', unit='photo'):            

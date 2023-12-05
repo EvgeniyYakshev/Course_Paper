@@ -1,4 +1,4 @@
-class VKUser:
+class vk_user:
     def __init__(self):
         self.token = config['DEFAULT']['VK_TOKEN']
         self.vk_user_id = input('Введите свой ID пользователя VK или короткое имя (screen_name): ')
@@ -19,6 +19,7 @@ class VKUser:
                     'access_token': self.token,
                     'v': 5.131}
         vk_sizes = {'s': 1, 'm': 2, 'o': 3, 'p': 4, 'q': 5, 'r': 6, 'x': 7, 'y': 8, 'z': 9, 'w': 10}
+    def res_get_photo_1(self):        
         res_get_photo = requests.get(URL, params=params).json()
         if 'response'in res_get_photo:
             for file in res_get_photo['response']['items']:
@@ -26,11 +27,13 @@ class VKUser:
                 names = file['likes']['count']
                 if names in self.photo_dict.keys():
                     self.photo_dict[f"{names}_{file['date']}"] =  file_url['url']
+                    self.photo_dict_1[f"{folder_name}"] = count(file_url['url'])
                 else:
                     self.photo_dict[names] =  file_url['url']
             else:
                 print("Отсутствует ключ 'response' в словаре res_get_photo.")
             return          
     def get_json(self, file):
-            with open('result_json.json', 'w') as f:
-                json.dump(file, f, ensure_ascii=False, indent=2)
+        with open('result_json.json', 'w') as f:
+            json.dump(file, f, ensure_ascii=False, indent=2)
+    
